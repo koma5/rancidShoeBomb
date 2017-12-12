@@ -132,3 +132,8 @@ blue
 Feldgrün
 black
 
+grid layout wirh pictures
+drag them arround
+details page
+single page app
+
