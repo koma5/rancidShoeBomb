@@ -79,6 +79,8 @@ Zeitgeist
 star
 angst (english)
 stress
+dumped dumpee
+dump
 
 taxonimie
 
@@ -116,7 +118,6 @@ regain
 reimagine
 imagine
 morne
-
 
 schlagzeilengenerator
 absurd ideas generator
