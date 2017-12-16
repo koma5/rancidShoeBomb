@@ -1,5 +1,6 @@
-const express = require('express', '4.16.2')
-const app = express()
+var express = require('express'),
+	app = express(),
+	port = process.env.PORT || 3000;
 
 var router = express.Router();
 
@@ -16,4 +17,4 @@ router.use(function(req, res, next) {
 router.get('/', (req, res) => res.send(message))
 router.get('/landfills', (req, res) => res.send({resultset:[{name:'freshkills'}, {name:'Vorderthal common dump'}]}))
 
-app.listen(3000, () => console.log('throwing rancidShoeBombs on port 3000'))
+app.listen(port, () => console.log('throwing rancidShoeBombs on port ' + port))
