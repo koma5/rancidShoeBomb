@@ -1,20 +1,17 @@
 var express = require('express'),
 	app = express(),
-	port = process.env.PORT || 3000;
+	port = process.env.PORT || 3000,
+	mongoose = require('mongoose'),
+	Landfill = require ('./models/landfillModel'),
+	bodyParser = require('body-parser');
 
-var router = express.Router();
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/landfillDB'); 
 
-message = {shout: 'rancidShoeBomb!!'};
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.use('/', router);
-
-router.use(function(req, res, next) {
-	console.log('bomb on ' + req.url);
-	next();
-});
-
-
-router.get('/', (req, res) => res.send(message))
-router.get('/landfills', (req, res) => res.send({resultset:[{name:'freshkills'}, {name:'Vorderthal common dump'}]}))
+var routes = require('./routes/landfillRoutes');
+routes(app);
 
 app.listen(port, () => console.log('throwing rancidShoeBombs on port ' + port))
