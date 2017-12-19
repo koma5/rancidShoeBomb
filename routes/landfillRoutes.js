@@ -3,8 +3,11 @@ module.exports = function(app) {
 
 	var landfill = require('../controllers/landfillController');
 
-	app.route('/').get(function (req, res){res.send({"shout": "rancidShoeBomb!!"})});
+	app.route('/').get(function (req, res) {
+		res.send({"shout": "rancidShoeBomb!!"})
+	});
 
+	//landfills
 	app.route('/landfills')
 		.get(landfill.list_all_landfills)
 		.post(landfill.create_a_landfill);

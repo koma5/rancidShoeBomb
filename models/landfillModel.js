@@ -7,6 +7,10 @@ var LandfillSchema = new Schema({
 	name: {
 		type: String,
 		required: 'name of the landfill is required'
+	},
+	opened: {
+		type: Date,
+		default: Date.now
 	}
 });
 
