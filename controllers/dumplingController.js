@@ -4,9 +4,9 @@ var mongoose = require('mongoose'),
 	Dumpling = mongoose.model('Dumpling');
 
 exports.list_all_dumplings = function(req, res) {
-	Dumpling.find({}, function(err, dumpling) {
+	Dumpling.find({}, function(err, dumplings) {
 		if (err) res.send(err);
-		res.json(dumpling);
+		res.json(dumplings);
 	});
 };
 

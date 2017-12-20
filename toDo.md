@@ -1,2 +1,4 @@
 - [ ] null value ?
 - [ ] patch
+- [ ] pretty printing
+- [ ] gzip

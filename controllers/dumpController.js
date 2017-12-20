@@ -4,9 +4,9 @@ var mongoose = require('mongoose'),
 	Dump = mongoose.model('Dump');
 
 exports.list_all_dumps = function(req, res) {
-	Dump.find({}, function(err, dump) {
+	Dump.find({}, function(err, dumps) {
 		if (err) res.send(err);
-		res.json(dump);
+		res.json(dumps);
 	});
 };
 
