@@ -1,4 +1,5 @@
 - [ ] null value ?
 - [ ] patch
-- [ ] pretty printing
+- [x] pretty printing
 - [ ] gzip
+- [x] log requests to console again
