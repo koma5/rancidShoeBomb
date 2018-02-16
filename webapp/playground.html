@@ -1,0 +1,59 @@
+<html>
+<style>
+.box {
+  width: 20px; height:20px;
+  float: left;
+  background-color:#ccc;
+}
+.cont {
+  width: 60px; height:60px;
+}
+</style>
+<div class="cont">
+  <div class="box" id="0" style="background-color: #507f1f;"></div>
+  <div class="box" id="1" style="background-color: #77bcf8;"></div>
+  <div class="box" id="2" style="background-color: #6cd799;"></div>
+  <div class="box" id="3" style="background-color: #439011;"></div>
+  <div class="box" id="4"></div>
+  <div class="box" id="5"></div>
+  <div class="box" id="6"></div>
+  <div class="box" id="7"></div>
+  <div class="box" id="8"></div>
+</div>
+
+
+
+<code style="white-space: pre-wrap;">
+0x5.toString(2) >> "101"
+parseInt("ff", 16) >> 255
+(0b101 << 2).toString(2) >> 10100
+
+
+id = "507f1f77bcf86cd799439011"
+for(i = 0; i< 24; i += 2) {console.log(id.substring(i, i+2))}
+
+
+// grayscale by id
+for (i = 0; i < 9; i++) {
+
+  box = document.getElementById(i)
+  color = id.substring(i*2, i*2+2);
+  box.style.backgroundColor = "#" + color + color + color; 
+}
+
+
+
+//OR orgy
+id = "507f1f77bcf86cd799439011".split('');
+
+blahh = [];
+
+for (a = 0; a < id.length; a++) {
+  for (b = 0; b < id.length; b++){
+    blub = parseInt( id[a], 16 ) | parseInt( id[b], 16 ) ;
+	blahh.push(blub.toString(16));
+  }
+}
+console.log(blahh.join(''))
+</code>
+</html>
