@@ -4,3 +4,4 @@
 - [ ] gzip
 - [x] log requests to console again
 - [ ] angular local
+- [ ] async await mockdata
