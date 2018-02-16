@@ -5,3 +5,5 @@
 - [x] log requests to console again
 - [ ] angular local
 - [ ] async await mockdata
+- [ ] https everywhere (api and webapp)
+- [ ] reasonable CORS and set it in the right place
