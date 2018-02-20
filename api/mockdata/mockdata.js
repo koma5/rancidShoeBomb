@@ -13,17 +13,12 @@ mongoose.connect('mongodb://localhost/rancidShoeBomb', {useMongoClient: true});
 
 // remove all object in the collections
 
-Landfill.remove({}, function(err) { 
-  console.log('collection removed') 
+[Landfill, Dump, Dumpling].forEach(function(c) {
+	c.remove({}, function(err) {
+		console.log('collection removed')
+	});
 });
 
-Dump.remove({}, function(err) {
-  console.log('collection removed')
-});
-
-Dumpling.remove({}, function(err) {
-  console.log('collection removed')
-});
 
 // insert mockdata from json files
 
