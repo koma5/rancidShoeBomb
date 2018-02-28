@@ -11,33 +11,15 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/rancidShoeBomb', {useMongoClient: true});
 
 
-// remove all object in the collections
+// remove all object in the collections and insert mockdata
 
-[Landfill, Dump, Dumpling].forEach(function(c) {
-	c.remove({}, function(err) {
-		console.log('collection removed')
+[[Landfill, landfillMock], [Dump, dumpMock], [Dumpling, dumplingMock]].forEach(function(c) {
+	c[0].remove({}, function(err) {
+		console.log('collection removed');
+	}).then(function(){
+		c[0].insertMany(c[1]);
 	});
 });
 
-
-// insert mockdata from json files
-
-Landfill.insertMany(landfillMock, function(err,result) {
-   if (err) {
-     console.log(err);
-   }
-});
-
-Dump.insertMany(dumpMock, function(err,result) {
-   if (err) {
-     console.log(err);
-   }
-});
-
-Dumpling.insertMany(dumplingMock, function(err,result) {
-   if (err) {
-     console.log(err);
-   }
-});
 
 //mongoose.connection.close();
