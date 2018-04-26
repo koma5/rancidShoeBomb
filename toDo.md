@@ -7,3 +7,6 @@
 - [ ] async await mockdata
 - [ ] https everywhere (api and webapp)
 - [ ] reasonable CORS and set it in the right place
+- [ ] to dockerize -> branch docker
+- [ ] get rid of mongodb -> arangodb or some other graph database
+- [ ] linked data!!
