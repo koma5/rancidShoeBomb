@@ -8,3 +8,11 @@ services:
       - "80:80"
     network_mode: host
     restart: always
+  api:
+    build: api
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    network_mode: host
+    restart: always
