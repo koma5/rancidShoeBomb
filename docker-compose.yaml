@@ -1,0 +1,10 @@
+version: "3"
+services:
+  webapp:
+    build: webapp
+    expose:
+      - "80"
+    ports:
+      - "80:80"
+    network_mode: host
+    restart: always
