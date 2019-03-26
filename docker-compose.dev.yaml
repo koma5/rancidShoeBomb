@@ -1,0 +1,30 @@
+version: "3"
+services:
+  dbdev:
+    build: db
+    expose:
+      - "27017"
+    ports:
+      - "27017:27017"
+    network_mode: host
+    restart: always
+  webappdev:
+    build: webapp
+    expose:
+      - "80"
+    ports:
+      - "80:80"
+    network_mode: host
+    restart: always
+  apidev:
+    image: node
+    volumes:
+      - ./api:/usr/src/service
+    working_dir: /usr/src/service
+    command: bash -c "npm install && npm install -g nodemon && nodemon run rancidshoebomb"
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    network_mode: host
+    restart: always
