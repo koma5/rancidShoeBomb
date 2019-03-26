@@ -22,5 +22,3 @@ services:
       - "3000:3000"
     network_mode: host
     restart: always
-    depends_on:
-      - "db"

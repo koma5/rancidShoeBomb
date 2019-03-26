@@ -12,7 +12,11 @@ var rancidLog = function(string) {
 }
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/rancidShoeBomb', {useMongoClient: true});
+mongoose.connect('mongodb://localhost/rancidShoeBomb', {useMongoClient: true, server:{auto_reconnect:true}}).catch( err => {
+	rancidLog(" first connection to database failed, exiting!");
+	process.exit(1);
+	
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -29,3 +33,4 @@ var routes = require('./routes/rancidShoeBombRoutes');
 routes(app);
 
 app.listen(port, () => rancidLog(' throwing rancidShoeBombs on port ' + port))
+
