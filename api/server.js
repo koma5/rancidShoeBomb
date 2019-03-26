@@ -12,7 +12,7 @@ var rancidLog = function(string) {
 }
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/rancidShoeBomb', {useMongoClient: true, server:{auto_reconnect:true}}).catch( err => {
+mongoose.connect('mongodb://localhost/rancidShoeBomb', {useMongoClient: true}).catch( err => {
 	rancidLog(" first connection to database failed, exiting!");
 	process.exit(1);
 	
