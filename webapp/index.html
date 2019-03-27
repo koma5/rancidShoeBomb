@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="app.js"></script>
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <body>
 
-<div ng-app="rancidShoeBomb" ng-controller="rancidController">
+<div id="app">
+	{{ message }}
+
 <ol>
-  <li ng-repeat="l in landfills">{{l.name}}</li>
+	<li v-for="landfill in landfills">
+		{{ landfill.name }}
+	</li>
 </ol>
+
 </div>
+
+
+<script src="app.js"></script>
 
 </body>
 </html>
