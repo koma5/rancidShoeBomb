@@ -1,5 +1,6 @@
 <template>
   <div id="rancidapp">
+    <p>Hello fillers of land</p>
     <Landfill />
   </div>
 </template>
