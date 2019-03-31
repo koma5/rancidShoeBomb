@@ -24,7 +24,7 @@
 
 {
 "name": "Vorderthal common dump",
-"_id": "507f1f77bcf86cd799439011"
+"_id": { "$oid" : "507f1f77bcf86cd799439011" }
 },
 
 {
