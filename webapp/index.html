@@ -12,9 +12,11 @@
 	{{ message }}
 
 <ol>
-	<li v-for="landfill in landfills">
+	<landfill v-for="landfill in landfills"
+	    v-bind:landfill="landfill"
+	    v-bind:key="landfill._id">
 		{{ landfill.name }}
-	</li>
+	</landfill>
 	<li>new landfill: <input type="text" v-on:keydown.enter="addLandfill"></li>
 </ol>
 

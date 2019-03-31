@@ -18,3 +18,8 @@ var app = new Vue({
 		}
 	}
 })
+
+Vue.component('landfill', {
+	props: ['landfill'],
+	template: '<li> {{ landfill.name }}</li>'
+});
