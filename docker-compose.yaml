@@ -6,8 +6,8 @@ services:
       - "27017"
     network_mode: host
     restart: always
-  webapp:
-    build: webapp
+  rancidui:
+    build: rancidui
     expose:
       - "80"
     ports:
