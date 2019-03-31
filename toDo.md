@@ -13,3 +13,4 @@
 - [ ] remove depend on in docker-compose.yml and set up higher mongoose timeout and reconnect
 - [ ] devdbseed service may exit 1 and not seed database; race condition.
 - [ ] devdbseed gets ran on every docker compse up; multiple times mockdata if dev env is not newly created
+- [ ] rewrite api with nginx to /api/ so no extra port is needed
