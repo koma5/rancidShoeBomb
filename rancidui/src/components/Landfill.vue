@@ -1,13 +1,25 @@
 <template>
   <div class="landfill">
     <ul>
+
         <li v-for="landfill in landfills" v-bind:key="landfill._id">
-            {{ landfill.name }}
-            <span v-on:click="deleteLandfill(landfill._id)">y</span>
+
+            <span v-if="currentEdit !== landfill._id">{{ landfill.name }}</span>
+
+            <span v-on:click="deleteLandfill(landfill._id)"> y</span>
+
+            <span v-on:click="toggleEdit(landfill)"> edit</span>
+
+            <form v-if="currentEdit == landfill._id" v-on:submit.prevent="edit(landfill)">
+                <input type="text" v-model="landfill.name">
+            </form>
+
         </li>
+
     <form v-on:submit.prevent="newLandfill">
         <input type="text" v-model="newLandfillName">
     </form>
+
     </ul>
   </div>
 </template>
@@ -18,6 +30,7 @@ export default {
     data() {
         return {
             newLandfillName: '',
+            currentEdit: '',
             landfills: []
         }
     },
@@ -26,18 +39,32 @@ export default {
         this.getLandfills();
     },
     methods: {
+
         getLandfills() {
             this.axios.get('http://127.0.0.1:3000/landfills').then(response => (this.landfills = response.data));
         },
+
         newLandfill() {
             this.axios.post('http://127.0.0.1:3000/landfills', {name: this.newLandfillName}).then(() => {
                 this.newLandfillName = '';
                 this.getLandfills();
             });
         },
+
         deleteLandfill(id) {
             this.axios.delete('http://127.0.0.1:3000/landfills/' + id).then((i) => {
                 this.getLandfills();
+            });
+        },
+
+        toggleEdit(landfill) {
+            this.currentEdit = landfill._id;
+        },
+
+        edit(landfill) {
+           this.axios.put('http://127.0.0.1:3000/landfills/' + landfill._id , landfill).then(() => {
+            this.currentEdit = "";
+            this.getLandfills();
             });
         }
     }
