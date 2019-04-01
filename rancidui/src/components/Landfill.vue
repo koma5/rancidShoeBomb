@@ -1,26 +1,28 @@
 <template>
   <div class="landfill">
-    <ul>
+    <div class="landfillgrid">
 
-        <li v-for="landfill in landfills" v-bind:key="landfill._id">
+        <div v-for="landfill in landfills" v-bind:key="landfill._id">
 
             <span v-if="currentEdit !== landfill._id">{{ landfill.name }}</span>
-
-            <span v-on:click="deleteLandfill(landfill._id)"> y</span>
-
-            <span v-on:click="toggleEdit(landfill)"> edit</span>
-
             <form v-if="currentEdit == landfill._id" v-on:submit.prevent="edit(landfill)">
                 <input type="text" v-model="landfill.name">
             </form>
+            <br />
+            <span v-on:click="deleteLandfill(landfill._id)"> x</span>
 
-        </li>
+            <span v-on:click="toggleEdit(landfill)"> e</span>
 
-    <form v-on:submit.prevent="newLandfill">
-        <input type="text" v-model="newLandfillName">
-    </form>
 
-    </ul>
+        </div>
+
+        <div>
+            <form v-on:submit.prevent="newLandfill">
+                <input type="text" v-model="newLandfillName">
+            </form>
+        </div>
+
+    </div>
   </div>
 </template>
 
@@ -73,4 +75,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.landfillgrid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.landfillgrid div{
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+}
+
 </style>
