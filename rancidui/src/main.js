@@ -6,7 +6,7 @@ import rancidApp from './rancidApp.vue'
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
 
-Vue.api = Vue.prototype.apiUrl = "http://127.0.0.1:3000" 
+Vue.api = Vue.prototype.apiUrl = location + 'api'
 
 new Vue({
   render: h => h(rancidApp),

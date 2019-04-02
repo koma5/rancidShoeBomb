@@ -41,3 +41,12 @@ services:
       - "3000:3000"
     network_mode: host
     restart: always
+
+  rancidbalance:
+    build: rancidbalance
+    expose:
+      - "80"
+    ports:
+      - "80:80"
+    network_mode: host
+    restart: always
