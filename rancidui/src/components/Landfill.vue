@@ -43,18 +43,18 @@ export default {
     methods: {
 
         getLandfills() {
-            this.axios.get('http://127.0.0.1:3000/landfills').then(response => (this.landfills = response.data));
+            this.axios.get(this.apiUrl + '/landfills').then(response => (this.landfills = response.data));
         },
 
         newLandfill() {
-            this.axios.post('http://127.0.0.1:3000/landfills', {name: this.newLandfillName}).then(() => {
+            this.axios.post(this.apiUrl + '/landfills', {name: this.newLandfillName}).then(() => {
                 this.newLandfillName = '';
                 this.getLandfills();
             });
         },
 
         deleteLandfill(id) {
-            this.axios.delete('http://127.0.0.1:3000/landfills/' + id).then((i) => {
+            this.axios.delete(this.apiUrl + '/landfills/' + id).then((i) => {
                 this.getLandfills();
             });
         },
@@ -64,7 +64,7 @@ export default {
         },
 
         edit(landfill) {
-           this.axios.put('http://127.0.0.1:3000/landfills/' + landfill._id , landfill).then(() => {
+           this.axios.put(this.apiUrl + '/landfills/' + landfill._id , landfill).then(() => {
             this.currentEdit = "";
             this.getLandfills();
             });
