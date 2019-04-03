@@ -3,6 +3,8 @@
 var mongoose = require('mongoose'),
 	Landfill = mongoose.model('Landfill');
 
+const ObjectId = mongoose.Types.ObjectId
+
 exports.list_all_landfills = function(req, res) {
 	Landfill.find({}, function(err, landfill) {
 		if (err) res.send(err);
@@ -20,7 +22,10 @@ exports.create_a_landfill = function(req, res) {
 
 
 exports.read_a_landfill = function(req, res) {
-  Landfill.findById(req.params.landfillId, function(err, landfill) {
+  Landfill.aggregate([
+    {"$match": {_id: ObjectId(req.params.landfillId) }},
+    {"$lookup": {"from": "dumplings", "localField": "_id", "foreignField": "landfill", "as": "dumplings"}}
+  ], function(err, landfill) {
     if (err)
       res.send(err);
     res.json(landfill);
