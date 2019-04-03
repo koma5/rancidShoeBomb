@@ -15,8 +15,8 @@
 - [ ] devdbseed gets ran on every docker compse up; multiple times mockdata if dev env is not newly created
 - [x] rewrite api with nginx to /api/ so no extra port is needed
 - [ ] haproxy reload config in dev env
-- [ ] raname db to garabgebase
-- [ ] rancidui in prod und dev same name? folder
+- [x] raname db to garabgebase
+- [x] rancidui in prod und dev same name? folder
 - [ ] fetch requests to api assume api/
 - [ ] rename api path to rapi? in haproxy and folder
 - [ ] rename rancidbalance to rancidbalancedev? If different...

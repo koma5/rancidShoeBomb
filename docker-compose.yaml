@@ -1,7 +1,7 @@
 version: "3"
 services:
-  db:
-    build: db
+  garbagebase:
+    build: garbagebase
     expose:
       - "27017"
     network_mode: host
