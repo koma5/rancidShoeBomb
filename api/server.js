@@ -3,7 +3,6 @@ var express = require('express'),
 	port = process.env.PORT || 3000,
 	mongoose = require('mongoose'),
 	Landfill = require ('./models/landfillModel'),
-	Dump = require ('./models/dumpModel'),
 	Dumpling = require ('./models/dumplingModel'),
 	bodyParser = require('body-parser');
 
