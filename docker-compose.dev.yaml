@@ -13,7 +13,7 @@ services:
     image: mongo
     volumes:
       - ./api/mockdata:/mockdata
-    command: bash -c "mongoimport --db rancidShoeBomb --collection landfills --type json --file /mockdata/landfillMock.json --jsonArray "
+    command: bash -c "mongoimport --db rancidShoeBomb --collection landfills --type json --file /mockdata/landfillMock.json --jsonArray &&                        mongoimport --db rancidShoeBomb --collection dumplings --type json --file /mockdata/dumplingMock.json --jsonArray "
     network_mode: host
 
   ranciduidev:
