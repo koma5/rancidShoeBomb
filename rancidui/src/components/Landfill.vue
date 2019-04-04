@@ -81,14 +81,13 @@ export default {
 .landfillgrid div{
     width: 90px;
     height: 90px;
-    background-color: #875F9A;
-    color: white;
+    background-color: lightgray;
+    box-shadow: 1px 1px;
     padding: 10px;
-    border-radius: 5px;
 }
 
 .landfillgrid div:hover {
-    box-shadow: 1px 1px black;
+    box-shadow: 2px 2px;
 }
 
 .landfillgrid div input {
