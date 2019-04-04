@@ -6,7 +6,10 @@ var mongoose = require('mongoose'),
 const ObjectId = mongoose.Types.ObjectId
 
 exports.list_all_landfills = function(req, res) {
-	Landfill.find({}, function(err, landfill) {
+	Landfill.aggregate([
+    {"$lookup": {"from": "dumplings", "localField": "_id", "foreignField": "landfill", "as": "dumplings"}},
+    {"$project": {"dumplingCount": {"$size": "$dumplings"}, "name":1, "opened":1}}
+    ], function(err, landfill) {
 		if (err) res.send(err);
 		res.json(landfill);
 	});
