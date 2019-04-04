@@ -2,17 +2,14 @@
   <div class="landfill">
     <div class="landfillgrid">
 
-        <div v-for="landfill in landfills" v-bind:key="landfill._id">
+        <div v-for="landfill in landfills" v-bind:key="landfill._id" v-on:click="toggleEdit(landfill)">
 
+            <span class="removeButton" v-on:click="deleteLandfill(landfill._id)">✖</span>
             <span v-if="currentEdit !== landfill._id">{{ landfill.name }}</span>
+            <span v-if="landfill.dumplingCount > 0" class="dumplingCount"> dumpees: {{landfill.dumplingCount}}</span>
             <form v-if="currentEdit == landfill._id" v-on:submit.prevent="edit(landfill)">
                 <input type="text" v-model="landfill.name">
             </form>
-            <br />
-            <span v-on:click="deleteLandfill(landfill._id)"> x</span>
-
-            <span v-on:click="toggleEdit(landfill)"> e</span>
-
 
         </div>
 
@@ -78,13 +75,31 @@ export default {
 .landfillgrid {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
 }
 
 .landfillgrid div{
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     background-color: lightgray;
+    box-shadow: 1px 1px;
+    padding: 10px;
+}
+
+.landfillgrid div:hover {
+    box-shadow: 2px 2px;
+}
+
+.landfillgrid div input {
+    width: 60px;
+}
+
+.dumplingCount {
+    font-size:0.7em;
+}
+
+.removeButton {
+    cursor: default;
 }
 
 </style>
