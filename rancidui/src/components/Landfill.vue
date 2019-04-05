@@ -34,24 +34,26 @@ export default {
         }
     },
 
+    props: ["myKey"],
+
     mounted() {
         this.getLandfills();
     },
     methods: {
 
         getLandfills() {
-            this.axios.get(this.apiUrl + '/landfills').then(response => (this.landfills = response.data));
+            this.axios.get(this.apiUrl + '/' + this.myKey).then(response => (this.landfills = response.data));
         },
 
         newLandfill() {
-            this.axios.post(this.apiUrl + '/landfills', {name: this.newLandfillName}).then(() => {
+            this.axios.post(this.apiUrl + '/' + this.myKey, {name: this.newLandfillName}).then(() => {
                 this.newLandfillName = '';
                 this.getLandfills();
             });
         },
 
         deleteLandfill(id) {
-            this.axios.delete(this.apiUrl + '/landfills/' + id).then((i) => {
+            this.axios.delete(this.apiUrl + '/' + this.myKey + '/' + id).then((i) => {
                 this.getLandfills();
             });
         },
@@ -61,7 +63,7 @@ export default {
         },
 
         edit(landfill) {
-           this.axios.put(this.apiUrl + '/landfills/' + landfill._id , landfill).then(() => {
+           this.axios.put(this.apiUrl + '/' + this.myKey + '/' + landfill._id , landfill).then(() => {
             this.currentEdit = "";
             this.getLandfills();
             });

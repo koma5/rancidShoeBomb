@@ -1,12 +1,17 @@
 <template>
   <div id="rancidapp">
     <p>Hello fillers of land</p>
-    <Landfill />
+    <nav>
+        <router-link to="/dumpees">dumpees</router-link>
+        <router-link to="/landfills">landfills</router-link>
+    </nav>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Landfill from './components/Landfill.vue'
+import Dumpees from './components/Dumpees.vue'
 
 export default {
   name: 'rancidapp',
