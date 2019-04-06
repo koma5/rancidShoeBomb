@@ -37,6 +37,8 @@ export default {
         return {
             newItemName: '',
             currentEdit: '',
+            currentPage: 0,
+            perPage: 30,
             items: [],
             landfillsToLink: []
         }
@@ -45,12 +47,27 @@ export default {
     props: ["apiResource"],
 
     mounted() {
-        this.getItems();
+        this.getItems(this.currentPage);
+        this.scroll();
     },
     methods: {
 
-        getItems() {
-            this.axios.get(this.apiUrl + '/' + this.apiResource).then(response => (this.items = response.data));
+        scroll() {
+            window.onscroll = () => {
+                let buttomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+                if (buttomOfWindow) {
+                    this.currentPage++;
+                    this.getItems(this.currentPage);
+                }
+            }
+
+        },
+
+        getItems(page) {
+            if (typeof page === 'undefined') { var page = 0; var perPage = (this.currentPage+1) * this.perPage; }
+            else { var perPage = this.perPage, page = this.currentPage; }
+            this.axios.get(this.apiUrl + '/' + this.apiResource + '?per_page=' + perPage + '&page=' + page).then(response => (this.items.push(...response.data)));
         },
 
         getLandfills() {
