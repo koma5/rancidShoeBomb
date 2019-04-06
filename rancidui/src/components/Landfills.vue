@@ -1,12 +1,12 @@
 <template>
-    <Landfill myKey="landfills" />
+    <TilingGrid apiResource="landfills" />
 </template>
 
 <script>
-import Landfill from './Landfill.vue';
+import TilingGrid from './TilingGrid.vue';
 
 export default {
-    name: 'dumpees',
-    components: { Landfill }
+    name: 'Landfills',
+    components: { TilingGrid }
 }
 </script>

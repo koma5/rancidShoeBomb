@@ -13,6 +13,7 @@ Vue.use(VueRouter)
 Vue.api = Vue.prototype.apiUrl = "http://" + location.hostname + '/api'
 
 const routes = [
+        { path: '/', component: Landfills},
         { path: '/landfills', component: Landfills},
         { path: '/dumpees', component: Dumpees}
 

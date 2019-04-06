@@ -10,14 +10,14 @@
 </template>
 
 <script>
-import Landfill from './components/Landfill.vue'
+import Landfills from './components/Landfills.vue'
 import Dumpees from './components/Dumpees.vue'
 
 export default {
   name: 'rancidapp',
   components: {
-    Landfill
-  }
+        Landfills
+    }
 }
 </script>
 
@@ -30,4 +30,17 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+nav a, nav a:active, nav a:hover, nav a:visited {
+    padding: 5px;
+    color: #2c3e50;
+    text-decoration: none;
+    outline: none;
+}
+
+nav a.router-link-active {
+    padding: 5px;
+    text-decoration: underline;
+}
+
 </style>

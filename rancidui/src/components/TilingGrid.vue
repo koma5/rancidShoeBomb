@@ -1,0 +1,105 @@
+<template>
+    <div class="tilinggrid">
+
+        <div v-for="item in items" v-bind:key="item._id" v-on:click="toggleEdit(item)">
+
+            <span class="removeButton" v-on:click="deleteItem(item._id)">✖</span>
+            <span v-if="currentEdit !== item._id">{{ item.name }}</span>
+            <span v-if="item.dumplingCount > 0" class="dumplingCount"> dumpees: {{item.dumplingCount}}</span>
+            <form v-if="currentEdit == item._id" v-on:submit.prevent="edit(item)">
+                <input type="text" v-model="item.name">
+            </form>
+
+        </div>
+
+        <div>
+            <form v-on:submit.prevent="newItem">
+                <input type="text" v-model="newItemName">
+            </form>
+        </div>
+
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'TilingGrid',
+    data() {
+        return {
+            newItemName: '',
+            currentEdit: '',
+            items: []
+        }
+    },
+
+    props: ["apiResource"],
+
+    mounted() {
+        this.getItems();
+    },
+    methods: {
+
+        getItems() {
+            this.axios.get(this.apiUrl + '/' + this.apiResource).then(response => (this.items = response.data));
+        },
+
+        newItem() {
+            this.axios.post(this.apiUrl + '/' + this.apiResource, {name: this.newItemName}).then(() => {
+                this.newItemName = '';
+                this.getItems();
+            });
+        },
+
+        deleteItem(id) {
+            this.axios.delete(this.apiUrl + '/' + this.apiResource + '/' + id).then((i) => {
+                this.getItems();
+            });
+        },
+
+        toggleEdit(item) {
+            this.currentEdit = item._id;
+        },
+
+        edit(item) {
+           this.axios.put(this.apiUrl + '/' + this.apiResource + '/' + item._id , item).then(() => {
+            this.currentEdit = "";
+            this.getItems();
+            });
+        }
+    }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.tilinggrid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+}
+
+.tilinggrid div{
+    width: 90px;
+    height: 90px;
+    background-color: lightgray;
+    box-shadow: 1px 1px;
+    padding: 10px;
+}
+
+.tilinggrid div:hover {
+    box-shadow: 2px 2px;
+}
+
+.tilinggrid div input {
+    width: 60px;
+}
+
+.dumplingCount {
+    font-size:0.7em;
+}
+
+.removeButton {
+    cursor: default;
+}
+
+</style>
