@@ -6,9 +6,18 @@
             <span class="removeButton" v-on:click="deleteItem(item._id)">✖</span>
             <span v-if="currentEdit !== item._id">{{ item.name }}</span>
             <span v-if="item.dumplingCount > 0" class="dumplingCount"> dumpees: {{item.dumplingCount}}</span>
+
             <form v-if="currentEdit == item._id" v-on:submit.prevent="edit(item)">
                 <input type="text" v-model="item.name">
             </form>
+
+            <form v-if="apiResource == 'dumplings' && currentEdit == item._id" v-on:submit.prevent="edit(item)">
+                <select v-model:value="item.landfill">
+                    <option v-for="selection in landfillsToLink" v-bind:value="selection._id">{{selection.name}}</option>
+                </select>
+                <button type="submit">save</button>
+            </form>
+
 
         </div>
 
@@ -28,7 +37,8 @@ export default {
         return {
             newItemName: '',
             currentEdit: '',
-            items: []
+            items: [],
+            landfillsToLink: []
         }
     },
 
@@ -41,6 +51,10 @@ export default {
 
         getItems() {
             this.axios.get(this.apiUrl + '/' + this.apiResource).then(response => (this.items = response.data));
+        },
+
+        getLandfills() {
+            this.axios.get(this.apiUrl + '/landfills').then(response => (this.landfillsToLink = response.data));
         },
 
         newItem() {
@@ -58,6 +72,7 @@ export default {
 
         toggleEdit(item) {
             this.currentEdit = item._id;
+            this.getLandfills();
         },
 
         edit(item) {
