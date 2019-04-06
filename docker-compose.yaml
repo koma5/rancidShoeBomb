@@ -1,24 +1,32 @@
 version: "3"
 services:
+
   garbagebase:
     build: garbagebase
     expose:
       - "27017"
     network_mode: host
     restart: always
+
   rancidui:
     build: rancidui
     expose:
-      - "80"
-    ports:
-      - "80:80"
+      - "8000"
     network_mode: host
     restart: always
+
   api:
     build: api
     expose:
       - "3000"
+    network_mode: host
+    restart: always
+
+  rancidbalance:
+    build: rancidbalance
+    expose:
+      - "80"
     ports:
-      - "3000:3000"
+      - "80:80"
     network_mode: host
     restart: always
