@@ -34,13 +34,13 @@ export default {
 nav a, nav a:active, nav a:hover, nav a:visited {
     padding: 5px;
     color: #2c3e50;
-    text-decoration: none;
+    text-decoration: underline;
     outline: none;
 }
 
 nav a.router-link-active {
     padding: 5px;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 </style>
