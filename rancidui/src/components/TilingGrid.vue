@@ -3,7 +3,7 @@
 
         <div v-for="item in items" v-bind:key="item._id" v-on:click="toggleEdit(item)">
 
-            <span class="removeButton" v-on:click="deleteItem(item._id)">✖</span>
+            <span class="removeButton" v-on:click="deleteItem(item)">✖</span>
             <span v-if="currentEdit !== item._id">{{ item.name }}</span>
             <span v-if="item.dumplingCount > 0" class="dumplingCount"> dumpees: {{item.dumplingCount}}</span>
 
@@ -75,15 +75,16 @@ export default {
         },
 
         newItem() {
-            this.axios.post(this.apiUrl + '/' + this.apiResource, {name: this.newItemName}).then(() => {
+            var newItem = {name: this.newItemName}
+            this.axios.post(this.apiUrl + '/' + this.apiResource, {name: this.newItemName}).then((response) => {
                 this.newItemName = '';
-                this.getItems();
+                this.items.push(response.data);
             });
         },
 
-        deleteItem(id) {
-            this.axios.delete(this.apiUrl + '/' + this.apiResource + '/' + id).then((i) => {
-                this.getItems();
+        deleteItem(item) {
+            this.axios.delete(this.apiUrl + '/' + this.apiResource + '/' + item._id).then((i) => {
+                this.items.splice(this.items.indexOf(item),1);
             });
         },
 
