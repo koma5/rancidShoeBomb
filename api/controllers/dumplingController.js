@@ -4,10 +4,16 @@ var mongoose = require('mongoose'),
 	Dumpling = mongoose.model('Dumpling');
 
 exports.list_all_dumplings = function(req, res) {
+
+    var per_page = (typeof req.query.per_page === 'undefined') ? 100 : parseInt(req.query.per_page)
+    var page = (typeof req.query.page === 'undefined') ? 0 : parseInt(req.query.page)
+
 	Dumpling.find({}, function(err, dumplings) {
+
 		if (err) res.send(err);
 		res.json(dumplings);
-	});
+
+	}).limit(per_page).skip(page * per_page);
 };
 
 exports.create_a_dumpling = function(req, res) {
