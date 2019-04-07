@@ -94,9 +94,10 @@ export default {
         },
 
         edit(item) {
-           this.axios.put(this.apiUrl + '/' + this.apiResource + '/' + item._id , item).then(() => {
+           this.axios.put(this.apiUrl + '/' + this.apiResource + '/' + item._id , item).then((response) => {
             this.currentEdit = "";
-            this.getItems();
+            this.items.indexOf(item);
+            this.items[this.items.indexOf(item)] = item;
             });
         }
     }
