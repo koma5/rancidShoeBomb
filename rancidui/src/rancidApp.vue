@@ -4,6 +4,7 @@
     <nav>
         <router-link to="/dumpees">dumpees</router-link>
         <router-link to="/landfills">landfills</router-link>
+        <router-link to="earthsgarbage">ALL THE GARBAGE</router-link>
     </nav>
     <router-view></router-view>
   </div>
@@ -12,6 +13,7 @@
 <script>
 import Landfills from './components/Landfills.vue'
 import Dumpees from './components/Dumpees.vue'
+import EarthsGarbage from './components/EarthsGarbage.vue'
 
 export default {
   name: 'rancidapp',
