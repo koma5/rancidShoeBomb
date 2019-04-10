@@ -1,5 +1,5 @@
 <template>
-    <div class="tilinggrid">
+    <div class="tilinggrid" v-dragula="items" drake="first">
 
         <div v-for="item in items" v-bind:key="item._id" v-on:click="toggleEdit(item)">
 
