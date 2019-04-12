@@ -20,6 +20,7 @@
 
 
         </div>
+        <div class="dropzone">dropzone</div>
 
         <div>
             <form v-on:submit.prevent="newItem">
@@ -33,6 +34,16 @@
 <script>
 export default {
     name: 'TilingGrid',
+    created() {
+        let dragula = this.$dragula
+
+        let service = dragula.createService({
+            name: 'first',
+            drake: {
+                copy: true
+            }
+        })
+    },
     data() {
         return {
             newItemName: '',
@@ -135,5 +146,29 @@ export default {
 .removeButton {
     cursor: default;
 }
+
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+
 
 </style>
