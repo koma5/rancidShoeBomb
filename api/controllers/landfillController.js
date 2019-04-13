@@ -34,11 +34,12 @@ exports.create_a_landfill = function(req, res) {
 exports.read_a_landfill = function(req, res) {
   Landfill.aggregate([
     {"$match": {_id: ObjectId(req.params.landfillId) }},
-    {"$lookup": {"from": "dumplings", "localField": "_id", "foreignField": "landfill", "as": "dumplings"}}
+    {"$lookup": {"from": "dumplings", "localField": "_id", "foreignField": "landfill", "as": "dumplings"}},
+    {"$project": {"dumplingCount": {"$size": "$dumplings"}, "name":1, "opened":1}}
   ], function(err, landfill) {
     if (err)
       res.send(err);
-    res.json(landfill);
+    res.json(landfill[0]);
   });
 };
 

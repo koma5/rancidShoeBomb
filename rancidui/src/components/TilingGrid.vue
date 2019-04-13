@@ -6,6 +6,7 @@
                 v-on:click="toggleEdit(item)"
                 v-bind:draggable="draggable()"
                 v-on:dragstart="dragStart(item, $event)"
+                v-on:dragend="(event) => { dragEnd(item, event) }"
                 v-on:dragenter="dragEnter($event)"
                 v-on:dragleave="dragLeave($event)"
                 v-on:drop="(event) => { dragDrop(item, event) }"
@@ -75,7 +76,15 @@ export default {
         getItems(page) {
             if (typeof page === 'undefined') { var page = 0; var perPage = (this.currentPage+1) * this.perPage; }
             else { var perPage = this.perPage, page = this.currentPage; }
-            this.axios.get(this.apiUrl + '/' + this.apiResource + '?per_page=' + perPage + '&page=' + page).then(response => (this.items.push(...response.data)));
+            this.axios.get(this.apiUrl + '/' + this.apiResource + '?per_page=' + perPage + '&page=' + page).then(
+                response => (this.items.push(...response.data))
+            );
+        },
+
+        refreshItem(item) {
+            this.axios.get(this.apiUrl + '/' + this.apiResource + '/' + item._id ).then(response => {
+                this.$set(this.items, this.items.indexOf(item), response.data);
+            });
         },
 
         getLandfills() {
@@ -104,35 +113,36 @@ export default {
         edit(item) {
            this.axios.put(this.apiUrl + '/' + this.apiResource + '/' + item._id , item).then((response) => {
             this.currentEdit = "";
-            this.items.indexOf(item);
-            this.items[this.items.indexOf(item)] = item;
+            this.items[this.items.indexOf(item)] = response.data;
             });
         },
 
         linkItemTo(item, link) {
-            this.axios.put(this.apiUrl + '/dumplings/' + link, {'landfill': item._id}).then((response) => {});
+            this.axios.put(this.apiUrl + '/dumplings/' + link, {'landfill': item._id}).then((response) => {
+                this.refreshItem(item);
+            });
         },
 
         dragEnter(event) {
-            console.log(event);
             event.originalTarget.classList.add('dragenter');
         },
 
         dragLeave(event) {
-            console.log(event);
             event.originalTarget.classList.remove('dragenter');
         },
 
         dragStart(item, event) {
             event.dataTransfer.setData("text", item._id);
-            console.log(item, event);
+        },
+
+        dragEnd(item, event) {
+            this.refreshItem(item);
         },
 
         dragDrop(item, event) {
             event.preventDefault();
             event.originalTarget.classList.remove('dragenter');
             var data = event.dataTransfer.getData("text");
-            console.log(item._id, data, event)
             this.linkItemTo(item, data);
         },
 
