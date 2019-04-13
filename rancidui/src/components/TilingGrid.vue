@@ -1,7 +1,15 @@
 <template>
-    <div class="tilinggrid" v-dragula="items" drake="first">
+    <div class="tilinggrid">
 
-        <div v-for="item in items" v-bind:key="item._id" v-on:click="toggleEdit(item)">
+        <div    v-for="item in items"
+                v-bind:key="item._id"
+                v-on:click="toggleEdit(item)"
+                v-bind:draggable="draggable()"
+                v-on:dragstart="dragStart(item, $event)"
+                v-on:dragenter="dragEnter($event)"
+                v-on:dragleave="dragLeave($event)"
+                v-on:drop="(event) => { dragDrop(item, event) }"
+                @dragover.prevent>
 
             <span class="removeButton" v-on:click="deleteItem(item)">✖</span>
             <span v-if="currentEdit !== item._id">{{ item.name }}</span>
@@ -20,7 +28,6 @@
 
 
         </div>
-        <div class="dropzone">dropzone</div>
 
         <div>
             <form v-on:submit.prevent="newItem">
@@ -34,16 +41,6 @@
 <script>
 export default {
     name: 'TilingGrid',
-    created() {
-        let dragula = this.$dragula
-
-        let service = dragula.createService({
-            name: 'first',
-            drake: {
-                copy: true
-            }
-        })
-    },
     data() {
         return {
             newItemName: '',
@@ -110,7 +107,40 @@ export default {
             this.items.indexOf(item);
             this.items[this.items.indexOf(item)] = item;
             });
-        }
+        },
+
+        linkItemTo(item, link) {
+            this.axios.put(this.apiUrl + '/dumplings/' + link, {'landfill': item._id}).then((response) => {});
+        },
+
+        dragEnter(event) {
+            console.log(event);
+            event.originalTarget.classList.add('dragenter');
+        },
+
+        dragLeave(event) {
+            console.log(event);
+            event.originalTarget.classList.remove('dragenter');
+        },
+
+        dragStart(item, event) {
+            event.dataTransfer.setData("text", item._id);
+            console.log(item, event);
+        },
+
+        dragDrop(item, event) {
+            event.preventDefault();
+            event.originalTarget.classList.remove('dragenter');
+            var data = event.dataTransfer.getData("text");
+            console.log(item._id, data, event)
+            this.linkItemTo(item, data);
+        },
+
+        draggable() {
+            if (this.apiResource === "landfills") return false
+            return true;
+        },
+
     }
 }
 </script>
@@ -147,28 +177,8 @@ export default {
     cursor: default;
 }
 
-.gu-mirror {
-  position: fixed !important;
-  margin: 0 !important;
-  z-index: 9999 !important;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
+.dragenter {
+    background-color: black !important;
 }
-.gu-hide {
-  display: none !important;
-}
-.gu-unselectable {
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-}
-.gu-transit {
-  opacity: 0.2;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-  filter: alpha(opacity=20);
-}
-
 
 </style>
