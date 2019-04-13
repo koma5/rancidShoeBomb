@@ -35,7 +35,7 @@ exports.read_a_landfill = function(req, res) {
   Landfill.aggregate([
     {"$match": {_id: ObjectId(req.params.landfillId) }},
     {"$lookup": {"from": "dumplings", "localField": "_id", "foreignField": "landfill", "as": "dumplings"}},
-    {"$project": {"dumplingCount": {"$size": "$dumplings"}, "name":1, "opened":1}}
+    {"$project": {"dumplingCount": {"$size": "$dumplings"}, "name":1, "opened":1, "dumplings":1}}
   ], function(err, landfill) {
     if (err)
       res.send(err);
