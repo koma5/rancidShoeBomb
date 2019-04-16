@@ -14,6 +14,7 @@
 
             <span class="removeButton" v-on:click="deleteItem(item)">✖</span>
             <span v-if="currentEdit !== item._id">{{ item.name }}</span>
+            <a v-if="apiResource == 'landfills'" :href="'#/landfills/' +item._id">⧖</a>
             <span v-if="item.dumplingCount > 0" class="dumplingCount"> dumpees: {{item.dumplingCount}}</span>
 
             <form v-if="currentEdit == item._id" v-on:submit.prevent="edit(item)">
@@ -189,6 +190,11 @@ export default {
 
 .dragenter {
     background-color: black !important;
+}
+
+a, a:hover, a:active, a:visited {
+    text-decoration: none;
+    color: #2c3e50;
 }
 
 </style>

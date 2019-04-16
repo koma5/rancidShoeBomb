@@ -5,7 +5,7 @@
         <nav>
             <router-link to="/dumpees">dumpees</router-link>
             <router-link to="/landfills">landfills</router-link>
-            <router-link to="earthsgarbage">ALL THE GARBAGE</router-link>
+            <router-link to="/earthsgarbage">ALL THE GARBAGE</router-link>
         </nav>
     </header>
     <router-view></router-view>
