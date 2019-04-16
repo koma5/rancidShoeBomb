@@ -25,6 +25,7 @@ app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Headers', 'Access-Control-*, Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
     res.header('Access-Control-Max-Age', '14400');
+    res.header('X-Powered-By', 'pungent API byyy Express');
 	rancidLog(" bomb on " + req.url);
 	next();
 });

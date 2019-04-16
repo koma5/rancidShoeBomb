@@ -20,4 +20,16 @@
 - [ ] fetch requests to api assume api/
 - [ ] rename api path to rapi? in haproxy and folder
 - [ ] rename rancidbalance to rancidbalancedev? If different...
-- [ ] rancidui in prod on port 8080 too
+- [x] rancidui in prod on port 8080 too
+- [ ] unit tests
+- [ ] validation of inputs ui
+- [ ] validation of iputs api
+- [ ] split tilling grid or make more generic, find out how
+- [ ] fix drag behavior over text (children of div)
+- [ ] fix drag linking of dumpling to dumpling
+- [ ] paging still gos up (scrolling) if there is no additional content to load
+- [ ] get rid of dropdown linkg landfill dumpees; only showning 10 landfills anyways
+- [ ] check where to refresh data; to many api calls now
+- [ ] edit it detail page
+- [ ] detail page generic; same problem with tiling grid!?
+- [ ] exit edit of grid item by extra button

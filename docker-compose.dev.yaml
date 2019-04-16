@@ -25,10 +25,10 @@ services:
     network_mode: host
     restart: always
 
-  apidev:
+  pungentapidev:
     image: node
     volumes:
-      - ./api:/usr/src/service
+      - ./pungentapi:/usr/src/service
     working_dir: /usr/src/service
     command: bash -c "npm install && npm install -g nodemon && nodemon run rancidshoebomb"
     expose:
