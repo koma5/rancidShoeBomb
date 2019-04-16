@@ -1,11 +1,13 @@
 <template>
   <div id="rancidapp">
-    <p>Hello fillers of land</p>
-    <nav>
-        <router-link to="/dumpees">dumpees</router-link>
-        <router-link to="/landfills">landfills</router-link>
-        <router-link to="earthsgarbage">ALL THE GARBAGE</router-link>
-    </nav>
+    <header>
+        <p>Hello fillers of land</p>
+        <nav>
+            <router-link to="/dumpees">dumpees</router-link>
+            <router-link to="/landfills">landfills</router-link>
+            <router-link to="earthsgarbage">ALL THE GARBAGE</router-link>
+        </nav>
+    </header>
     <router-view></router-view>
   </div>
 </template>
@@ -31,6 +33,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+header {
+    margin-bottom: 10px;
 }
 
 nav a, nav a:active, nav a:hover, nav a:visited {

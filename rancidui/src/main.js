@@ -6,6 +6,7 @@ import rancidApp from './rancidApp.vue'
 import Landfills from './components/Landfills.vue'
 import Dumpees from './components/Dumpees.vue'
 import EarthsGarbage from './components/EarthsGarbage.vue'
+import LandfillDetail from './components/LandfillDetail.vue'
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
@@ -14,10 +15,11 @@ Vue.use(VueRouter)
 Vue.api = Vue.prototype.apiUrl = "http://" + location.hostname + '/api'
 
 const routes = [
-        { path: '/', component: Landfills},
-        { path: '/landfills', component: Landfills},
-        { path: '/dumpees', component: Dumpees},
-        { path: '/earthsgarbage', component: EarthsGarbage}
+        { path: '/', component: Landfills },
+        { path: '/landfills', component: Landfills },
+        { path: '/dumpees', component: Dumpees },
+        { path: '/earthsgarbage', component: EarthsGarbage },
+        { path: '/landfills/:id', component: LandfillDetail }
 ];
 
 
