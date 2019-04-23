@@ -33,7 +33,7 @@
 
         <div>
             <form v-on:submit.prevent="newItem">
-                <input type="text" v-model="newItemName">
+                <input placeholder="new" type="text" v-model="newItemName">
             </form>
         </div>
 
