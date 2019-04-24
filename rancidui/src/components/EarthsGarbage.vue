@@ -1,8 +1,8 @@
 
 <template>
     <main>
-    <section id="left"><TilingGrid apiResource="dumplings" /></section>
-    <section id="right"><TilingGrid apiResource="landfills" /></section>
+        <section id="left"><TilingGrid apiResource="dumplings" /></section>
+        <section id="right"><TilingGrid apiResource="landfills" /></section>
     </main>
 </template>
 
@@ -15,14 +15,15 @@ export default {
 }
 </script>
 
-<style>
-#left {
-  float: left;
-  width: 65%;
-  overflow: hidden;
+<style scoped>
+
+main {
+    display: grid;
+    grid-template-columns: 65% auto;
 }
 
 #right {
-  overflow: hidden;
+    border-left: 3px solid;
+    padding-left: 10px;
 }
 </style>
