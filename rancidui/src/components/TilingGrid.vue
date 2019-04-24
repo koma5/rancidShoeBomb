@@ -1,7 +1,8 @@
 <template>
     <div class="tilinggrid">
 
-        <div    v-for="item in items"
+        <div    class="item"
+                v-for="item in items"
                 v-bind:key="item._id"
                 v-on:click="toggleEdit(item)"
                 v-bind:draggable="draggable()"
@@ -12,14 +13,17 @@
                 v-on:drop="(event) => { dragDrop(item, event) }"
                 @dragover.prevent>
 
-            <span class="removeButton" v-on:click="deleteItem(item)">✖</span>
+            <div class="controls">
+                <a v-if="apiResource == 'landfills'" :href="'#/landfills/' +item._id">⧖</a>
+                <span class="removeButton" v-on:click="deleteItem(item)">✖</span>
+            </div>
             <span v-if="currentEdit !== item._id">{{ item.name }}</span>
-            <a v-if="apiResource == 'landfills'" :href="'#/landfills/' +item._id">⧖</a>
-            <span v-if="item.dumplingCount > 0" class="dumplingCount"> dumpees: {{item.dumplingCount}}</span>
 
             <form v-if="currentEdit == item._id" v-on:submit.prevent="edit(item)">
                 <input type="text" v-model="item.name">
             </form>
+
+            <p v-if="item.dumplingCount > 0" class="dumplingCount"> dumpees: {{item.dumplingCount}}</p>
 
             <form v-if="apiResource == 'dumplings' && currentEdit == item._id" v-on:submit.prevent="edit(item)">
                 <select v-model:value="item.landfill">
@@ -31,7 +35,7 @@
 
         </div>
 
-        <div>
+        <div class="item">
             <form v-on:submit.prevent="newItem">
                 <input placeholder="new" type="text" v-model="newItemName">
             </form>
@@ -164,20 +168,22 @@ export default {
     grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
 }
 
-.tilinggrid div{
+.item{
     width: 90px;
-    height: 90px;
+    height: 75px;
     background-color: lightgray;
     box-shadow: 1px 1px;
-    padding: 10px;
+    padding: 25px 10px 10px 10px;
+    position: relative;
 }
 
-.tilinggrid div:hover {
+.item:hover {
     box-shadow: 2px 2px;
 }
 
-.tilinggrid div input {
-    width: 60px;
+.item input {
+    width: 100%;
+    word-break: break-word;
     border: 0;
     outline: 0;
     background: transparent;
@@ -187,6 +193,7 @@ export default {
 }
 
 .dumplingCount {
+    margin: 0;
     font-size:0.7em;
 }
 
@@ -201,6 +208,12 @@ export default {
 a, a:hover, a:active, a:visited {
     text-decoration: none;
     color: #2c3e50;
+}
+
+.controls {
+    position: absolute;
+    top: 8px;
+    right: 8px;
 }
 
 </style>
