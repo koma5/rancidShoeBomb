@@ -69,7 +69,7 @@ article {
 }
 
 article h1 {
-    text-transform: uppercase;
+    font-variant: small-caps;
     font-size: 3.5em;
     word-wrap: break-word;
     margin: 0;
