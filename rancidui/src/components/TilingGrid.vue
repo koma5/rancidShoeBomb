@@ -183,7 +183,6 @@ export default {
 
 .item input {
     width: 100%;
-    word-break: break-word;
     border: 0;
     outline: 0;
     background: transparent;
