@@ -178,6 +178,12 @@ export default {
 
 .tilinggrid div input {
     width: 60px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid;
+    color: #2c3e50;
+
 }
 
 .dumplingCount {
