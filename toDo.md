@@ -33,3 +33,5 @@
 - [ ] edit it detail page
 - [ ] detail page generic; same problem with tiling grid!?
 - [ ] exit edit of grid item by extra button
+- [ ] kill mongodb
+- [ ] mongodb full text search
