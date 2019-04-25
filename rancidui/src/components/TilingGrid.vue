@@ -1,6 +1,12 @@
 <template>
     <div class="tilinggrid">
 
+        <div class="search">
+            <form v-on:submit.prevent="getItems(currentPage, true)">
+                <input type="text" v-model="searchTerm">
+            </form>
+        </div>
+
         <div    class="item"
                 v-for="item in items"
                 v-bind:key="item._id"
@@ -41,6 +47,8 @@
             </form>
         </div>
 
+        <div class="newItem"></div>
+
     </div>
 </template>
 
@@ -54,6 +62,7 @@ export default {
             currentPage: 0,
             perPage: 30,
             items: [],
+            searchTerm: '',
             landfillsToLink: []
         }
     },
@@ -78,11 +87,17 @@ export default {
 
         },
 
-        getItems(page) {
+        getItems(page, replace) {
             if (typeof page === 'undefined') { var page = 0; var perPage = (this.currentPage+1) * this.perPage; }
             else { var perPage = this.perPage, page = this.currentPage; }
-            this.axios.get(this.apiUrl + '/' + this.apiResource + '?per_page=' + perPage + '&page=' + page).then(
-                response => (this.items.push(...response.data))
+            var searchUrlParameters = (this.searchTerm !== '') ? '&name=' + this.searchTerm : '';
+            this.axios.get(this.apiUrl + '/' + this.apiResource + '?per_page=' + perPage + '&page=' + page + searchUrlParameters).then(
+                    (response) => {
+                        if (typeof replace !== 'undefined') {
+                            this.items = [];
+                        }
+                        this.items.push(...response.data);
+                    }
             );
         },
 
@@ -175,6 +190,19 @@ export default {
     box-shadow: 1px 1px;
     padding: 25px 10px 10px 10px;
     position: relative;
+}
+
+.newItem {
+    width: 90px;
+    height: 90px;
+    padding: 10px;
+    font-size: 100px;
+}
+
+.newItem:after {
+    content:"+";
+    top: 5px;
+    vertical-align: middle;
 }
 
 .item:hover {
