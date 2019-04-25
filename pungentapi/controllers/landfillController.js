@@ -10,13 +10,22 @@ exports.list_all_landfills = function(req, res) {
     var per_page = (typeof req.query.per_page === 'undefined') ? 100 : parseInt(req.query.per_page)
     var page = (typeof req.query.page === 'undefined') ? 0 : parseInt(req.query.page)
 
-
-	Landfill.aggregate([
+    var aggregateStuff = [     
     {"$lookup": {"from": "dumplings", "localField": "_id", "foreignField": "landfill", "as": "dumplings"}},
     {"$skip": page * per_page},
     {"$limit": per_page},
     {"$project": {"dumplingCount": {"$size": "$dumplings"}, "name":1, "opened":1}}
-    ], function(err, landfill) {
+    ]
+
+    if (typeof req.query.name !== 'undefined') {
+        aggregateStuff.push(
+            {"$match": {"name": req.query.name}}
+        );
+    }
+
+    console.log(aggregateStuff);
+
+	Landfill.aggregate(aggregateStuff, function(err, landfill) {
 		if (err) res.send(err);
 		res.json(landfill);
 	});
