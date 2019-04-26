@@ -139,7 +139,7 @@ export default {
 
         linkItemTo(item, link) {
             this.axios.put(this.apiUrl + '/dumplings/' + link, {'landfill': item._id}).then((response) => {
-                this.refreshItem(item);
+                this.getItems(this.page, true);
             });
         },
 
