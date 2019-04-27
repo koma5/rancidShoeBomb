@@ -7,6 +7,7 @@ import Landfills from './components/Landfills.vue'
 import Dumpees from './components/Dumpees.vue'
 import EarthsGarbage from './components/EarthsGarbage.vue'
 import LandfillDetail from './components/LandfillDetail.vue'
+import PageNotFound from './components/PageNotFound.vue'
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
@@ -19,7 +20,8 @@ const routes = [
         { path: '/landfills', component: Landfills },
         { path: '/dumpees', component: Dumpees },
         { path: '/earthsgarbage', component: EarthsGarbage },
-        { path: '/landfills/:id', component: LandfillDetail }
+        { path: '/landfills/:id', component: LandfillDetail },
+        { path: "*", component: PageNotFound }
 ];
 
 
