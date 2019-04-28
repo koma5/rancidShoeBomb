@@ -8,7 +8,9 @@ exports.list_all_dumplings = function(req, res) {
     var per_page = (typeof req.query.per_page === 'undefined') ? 100 : parseInt(req.query.per_page)
     var page = (typeof req.query.page === 'undefined') ? 0 : parseInt(req.query.page)
 
-	Dumpling.find({}, function(err, dumplings) {
+    var query = (typeof req.query.name == 'undefined') ? {} : {'name': req.query.name};
+
+	Dumpling.find(query, function(err, dumplings) {
 
 		if (err) res.send(err);
 		res.json(dumplings);
