@@ -35,3 +35,4 @@
 - [ ] exit edit of grid item by extra button
 - [ ] kill mongodb
 - [ ] mongodb full text search
+- [ ] add full url of Dumpee Detail page like rdf resource to drap and drop text exchange. If droped somewhere where it's not supposed to be droped it still makes sense
