@@ -1,11 +1,12 @@
 <template>
-    <div class="tilinggrid">
-
+        <div>
         <div class="search">
             <form v-on:submit.prevent="getItems(currentPage, true)">
-                <input type="text" v-model="searchTerm">
+                <input type="text" v-model="searchTerm" placeholder="search">
             </form>
         </div>
+
+        <div class="tilinggrid">
 
         <div    class="item"
                 v-for="item in items"
@@ -49,6 +50,7 @@
 
         <div class="newItem"></div>
 
+    </div>
     </div>
 </template>
 
@@ -241,6 +243,18 @@ a, a:hover, a:active, a:visited {
     position: absolute;
     top: 8px;
     right: 8px;
+}
+
+.search {
+    height: 60px;
+    width: 100%;
+    text-align: center;
+}
+
+.search input {
+    width: 150px;
+    margin: 10px;
+    placeholder: "a";
 }
 
 </style>
