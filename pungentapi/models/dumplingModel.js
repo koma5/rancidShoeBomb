@@ -13,4 +13,6 @@ var DumplingSchema = new Schema({
    }
 });
 
+DumplingSchema.index({ 'name': 'text' });
+
 module.exports = mongoose.model('Dumpling', DumplingSchema);
