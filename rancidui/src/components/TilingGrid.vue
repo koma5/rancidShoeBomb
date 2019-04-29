@@ -195,15 +195,14 @@ export default {
 }
 
 .newItem {
-    width: 90px;
-    height: 90px;
-    padding: 10px;
-    font-size: 100px;
+    width: 110px;
+    height: 110px;
+    font-size: 150px;
+    line-height: 55px;
 }
 
 .newItem:after {
     content:"+";
-    top: 5px;
     vertical-align: middle;
 }
 
