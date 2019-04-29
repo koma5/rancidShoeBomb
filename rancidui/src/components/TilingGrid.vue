@@ -42,13 +42,13 @@
 
         </div>
 
-        <div class="item">
+        <div v-if="displayNewItem" class="item">
             <form v-on:submit.prevent="newItem">
                 <input placeholder="new" type="text" v-model="newItemName">
             </form>
         </div>
 
-        <div class="newItem"></div>
+        <div v-if="!displayNewItem" v-on:click="displayNewItem = true" class="newItem"></div>
 
     </div>
     </div>
@@ -60,6 +60,7 @@ export default {
     data() {
         return {
             newItemName: '',
+            displayNewItem: false,
             currentEdit: '',
             currentPage: 0,
             perPage: 30,
@@ -118,6 +119,7 @@ export default {
             this.axios.post(this.apiUrl + '/' + this.apiResource, {name: this.newItemName}).then((response) => {
                 this.newItemName = '';
                 this.items.push(response.data);
+                this.displayNewItem = false;
             });
         },
 
