@@ -1,9 +1,12 @@
 <template>
     <section>
+        <CirclesDepiction />
         <article>
+
             <div class="depiction">
                 <h1>{{item.name}}</h1>
             </div>
+
 
             <div class="details">
                 <ul>
@@ -26,10 +29,11 @@
 
 <script>
 import TilingGrid from './TilingGrid.vue';
+import CirclesDepiction from './CirclesDepiction.vue';
 
 export default {
     name: 'LandfillDetail',
-    components: { TilingGrid },
+    components: { TilingGrid, CirclesDepiction },
     data() {
         return {
             item: {},
