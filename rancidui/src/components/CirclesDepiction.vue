@@ -14,10 +14,12 @@ export default {
         }
     },
 
+    props: ['seed', 'name'],
+
     mounted() {
-        this.depiction = new CirclesThing();
+        this.depiction = new CirclesThing({'seed': this.seed});
         this.depiction.draw();
-        this.depictionSvg = this.depiction.svgElement._groups[0][0].outerHTML;
+        this.depictionSvg = this.depiction.getRawSvg();
 
     },
 

@@ -1,12 +1,8 @@
 <template>
     <section>
-        <CirclesDepiction />
         <article>
 
-            <div class="depiction">
-                <h1>{{item.name}}</h1>
-            </div>
-
+            <CirclesDepiction v-if="item._id" :seed="item._id" :name="item.name"/>
 
             <div class="details">
                 <ul>

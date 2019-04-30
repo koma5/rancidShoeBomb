@@ -65,6 +65,10 @@ class CirclesThing {
         document.body.appendChild(this.svgElement._groups[0][0]);
     }
 
+    getRawSvg() {
+        return this.svgElement._groups[0][0].outerHTML;
+    }
+
 
 	getRandomFromPalette() {
 		return this.colorPalette[this.getRandomInt(0, this.colorPalette.length -1)];
