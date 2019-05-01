@@ -1,5 +1,8 @@
 <template>
-    <div v-html="depictionSvg"></div>
+    <div class="depiction">
+        <div v-html="depictionSvg"></div>
+        <h1>{{name}}</h1>
+    </div>
 </template>
 
 <script>
@@ -17,7 +20,7 @@ export default {
     props: ['seed', 'name'],
 
     mounted() {
-        this.depiction = new CirclesThing({'seed': this.seed});
+        this.depiction = new CirclesThing({'seed': this.seed, size: 330});
         this.depiction.draw();
         this.depictionSvg = this.depiction.getRawSvg();
 
@@ -27,3 +30,28 @@ export default {
 
 }
 </script>
+
+<style>
+
+.depiction {
+    width: 330px;
+    height: 330px;
+}
+
+.depiction h1 {
+    font-variant: small-caps;
+    font-size: 3.5em;
+    word-wrap: break-word;
+    margin: 0;
+    position: relative;
+    top: -330px;
+    mix-blend-mode: color;
+}
+
+.depiction svg {
+    z-index: -1;
+    filter: blur(5px); 
+    padding: 0;
+}
+
+</style>

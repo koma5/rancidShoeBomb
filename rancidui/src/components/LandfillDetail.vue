@@ -68,21 +68,6 @@ article {
     grid-gap: 40px;
 }
 
-article h1 {
-    font-variant: small-caps;
-    font-size: 3.5em;
-    word-wrap: break-word;
-    margin: 0;
-}
-
-.depiction {
-    width: 270px;
-    height: 270px;
-    background-color: lightgray;
-    box-shadow: 1px 1px;
-    padding: 30px;
-}
-
 .details ul {
   list-style: none;
 }
