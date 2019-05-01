@@ -21,7 +21,7 @@
                 @dragover.prevent>
 
             <div class="controls">
-                <a v-if="apiResource == 'landfills'" :href="'/landfills/' +item._id">⧖</a>
+                <router-link v-if="apiResource == 'landfills'" :to="'/landfills/' +item._id">⧖</router-link>
                 <span class="removeButton" v-on:click="deleteItem(item)">✖</span>
             </div>
             <span v-if="currentEdit !== item._id">{{ item.name }}</span>
