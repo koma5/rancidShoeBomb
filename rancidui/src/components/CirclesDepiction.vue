@@ -1,7 +1,7 @@
 <template>
     <div class="depiction">
         <div v-html="depictionSvg"></div>
-        <h1>{{name}}</h1>
+        <h1 v-if="name">{{name}}</h1>
     </div>
 </template>
 
@@ -17,10 +17,10 @@ export default {
         }
     },
 
-    props: ['seed', 'name'],
+    props: ['seed', 'name', 'depsize'],
 
     mounted() {
-        this.depiction = new CirclesThing({'seed': this.seed, size: 330});
+        this.depiction = new CirclesThing({'seed': this.seed, 'size': this.depsize});
         this.depiction.draw();
         this.depictionSvg = this.depiction.getRawSvg();
 
@@ -34,8 +34,8 @@ export default {
 <style>
 
 .depiction {
-    width: 330px;
-    height: 330px;
+    width: 100%;
+    height: 100%;
 }
 
 .depiction h1 {
@@ -50,7 +50,7 @@ export default {
 
 .depiction svg {
     z-index: -1;
-    filter: blur(5px); 
+    filter: blur(5px);
     padding: 0;
 }
 

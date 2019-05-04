@@ -2,7 +2,7 @@
     <section>
         <article>
 
-            <CirclesDepiction v-if="item._id" :seed="item._id" :name="item.name"/>
+            <CirclesDepiction v-if="item._id" :seed="item._id" :name="item.name" depsize="330" />
 
             <div class="details">
                 <ul>
@@ -63,9 +63,9 @@ section {
 
 article {
     display: grid;
-    grid-template-columns: 300px auto;
+    grid-template-columns: 330px auto;
     grid-template-rows: auto auto;
-    grid-gap: 40px;
+    grid-gap: 30px;
 }
 
 .details ul {

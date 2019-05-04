@@ -20,6 +20,8 @@
                 v-on:drop="(event) => { dragDrop(item, event) }"
                 @dragover.prevent>
 
+            <CirclesDepiction v-if="item._id" :seed="item._id" depsize="110" />
+            <div class="wrapper">
             <div class="controls">
                 <router-link v-if="apiResource == 'landfills'" :to="'/landfills/' +item._id">⧖</router-link>
                 <span class="removeButton" v-on:click="deleteItem(item)">✖</span>
@@ -39,24 +41,26 @@
                 <button type="submit">save</button>
             </form>
 
-
+        </div>
         </div>
 
+        <div v-if="!displayNewItem" v-on:click="displayNewItem = true" class="newItem"></div>
         <div v-if="displayNewItem" class="item">
             <form v-on:submit.prevent="newItem">
                 <input placeholder="new" type="text" v-model="newItemName">
             </form>
         </div>
 
-        <div v-if="!displayNewItem" v-on:click="displayNewItem = true" class="newItem"></div>
-
     </div>
     </div>
 </template>
 
 <script>
+import CirclesDepiction from './CirclesDepiction.vue';
+
 export default {
     name: 'TilingGrid',
+    components: { CirclesDepiction },
     data() {
         return {
             newItemName: '',
@@ -188,11 +192,8 @@ export default {
 }
 
 .item{
-    width: 90px;
-    height: 75px;
-    background-color: lightgray;
-    box-shadow: 1px 1px;
-    padding: 25px 10px 10px 10px;
+    width: 110px;
+    height: 110px;
     position: relative;
 }
 
@@ -208,8 +209,7 @@ export default {
     vertical-align: middle;
 }
 
-.item:hover {
-    box-shadow: 2px 2px;
+.wrapper:hover {
 }
 
 .item input {
@@ -257,5 +257,14 @@ a, a:hover, a:active, a:visited {
     margin: 10px;
     placeholder: "a";
 }
+
+.wrapper {
+    width: 90px;
+    height: 75px;
+    position:relative;
+    top: -110px;
+    padding: 25px 10px 10px 10px;
+}
+
 
 </style>
