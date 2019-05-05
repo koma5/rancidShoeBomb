@@ -14,7 +14,7 @@ exports.list_all_landfills = function(req, res) {
 
     if (typeof req.query.name !== 'undefined') {
         aggregateStuff.push(
-            {"$match": {"name": req.query.name}}
+            {"$match": {"$text": {"$search": req.query.name}}}
         );
     }
 
