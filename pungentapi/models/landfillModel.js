@@ -14,5 +14,6 @@ var LandfillSchema = new Schema({
 	}
 });
 
+LandfillSchema.index({ 'name': 'text' });
 
 module.exports = mongoose.model('Landfill', LandfillSchema);
