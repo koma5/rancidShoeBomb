@@ -29,7 +29,7 @@
             <span v-if="currentEdit !== item._id">{{ item.name }}</span>
 
             <form v-if="currentEdit == item._id" v-on:submit.prevent="edit(item)">
-                <input type="text" v-model="item.name">
+                <input ref="itemNameInput" type="text" v-model="item.name">
             </form>
 
             <p v-if="item.dumplingCount > 0" class="dumplingCount"> dumpees: {{item.dumplingCount}}</p>
@@ -136,6 +136,7 @@ export default {
         toggleEdit(item) {
             this.currentEdit = item._id;
             this.getLandfills();
+            this.$nextTick(() => this.$refs.itemNameInput[0].focus());
         },
 
         edit(item) {
@@ -222,7 +223,10 @@ export default {
     text-align: center;
     font-size: 1em;
     font-family: inherit;
+}
 
+.item input:focus {
+    background-color: rgba(255,255,255,0.3);
 }
 
 .dumplingCount {
