@@ -219,6 +219,9 @@ export default {
     background: transparent;
     border-bottom: 1px solid;
     color: #2c3e50;
+    text-align: center;
+    font-size: 1em;
+    font-family: inherit;
 
 }
 
@@ -255,7 +258,6 @@ a, a:hover, a:active, a:visited {
 .search input {
     width: 150px;
     margin: 10px;
-    placeholder: "a";
 }
 
 .wrapper {
